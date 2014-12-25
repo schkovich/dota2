@@ -11,7 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   # config.vm.box = "ubuntu/trusty64"
-  config.vm.box = "trusty-server-cloudimg-i386-vagrant-disk1"
+  # config.vm.box = "trusty-server-cloudimg-i386-vagrant-disk1"
+  config.vm.box = "virtualbox"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -71,12 +72,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell" do |s|
     s.privileged = false
-#    s.path = "steamCmdInstall.sh"
+    s.path = "steamCmdInstall.sh"
 #    s.path = "dota2Install.sh"
 #    s.path = "steamRuntimeInstall.sh"
 #    s.path = "steamSrcdsInstall.sh"
 #    s.path = "steamMetamodInstall.sh"
-    s.path = "dota2FixupsInstall.sh"
+#    s.path = "dota2FixupsInstall.sh"
   end
 
   # Enable provisioning with CFEngine. CFEngine Community packages are
