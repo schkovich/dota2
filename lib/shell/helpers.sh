@@ -1,16 +1,15 @@
 #!/bin/bash
-#
-# To be used with bash based charms on Ubuntu 14.04 LTS.
-#
 set -uex
 
-# Creates a directory in the specified path
+# Creates a directory in the given path
+# Makes parent directories as needed
+# Exits case empty path is given
 function createDirectory {
   local path="${1:-}"
   # http://unix.stackexchange.com/a/146945
   if [[ -z "${path// }" ]];
   then
-    echo "Could not create directory. Empty path given";
+    juju-log "Could not create directory. Empty path given";
     exit 1;
   fi
   if [ ! -d ${path} ]
@@ -29,7 +28,7 @@ function downloadFile {
   local localpath="${2:-notdefined}"
   local filename="${3:-notdefined}"
   if [ ! -f "${localpath}/${filename}" ]; then
-    wget --output-document="${localpath}/${filename}" "${remotepath}/${filename}"
+    wget "${remotepath}/${filename}" --output-document="${localpath}/${filename}"
   fi
 }
 
